@@ -17,26 +17,26 @@ jobs:
       - image: cimg/postgres:14.10
         environment:
           POSTGRES_USER: astuto
-          POSTGRES_DB: project_name_test
+          # POSTGRES_DB: project_name_test
           POSTGRES_PASSWORD: "dbpass"
 
     environment:
-      BUNDLE_JOBS: "1"
-      BUNDLE_RETRY: "1"
-      PGHOST: 127.0.0.1
-      PGUSER: circleci
-      PGPASSWORD: ""
+      # BUNDLE_JOBS: "1"
+      # BUNDLE_RETRY: "1"
+      # PGHOST: 127.0.0.1
+      # PGUSER: astuto
+      # PGPASSWORD: "dbpass"
       RAILS_ENV: test
-      CC_TEST_REPORTER_ID: some_long_token
-      COVERAGE: true
+      # CC_TEST_REPORTER_ID: some_long_token
+      # COVERAGE: true
 
     steps:
       - checkout
       - ruby/install-deps
 
-      - run:
-          name: Wait for db
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      # - run:
+      #     name: Wait for db
+      #     command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # - run:
       #     name: Install Code Climate Test Reporter
@@ -54,8 +54,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            bundle exec rspec --format progress
-
+            bundle exec rspec
       # - run:
       #     name: Upload Test Results to Code Climate
       #     command: |
