@@ -27,3 +27,5 @@ jobs:
       BUNDLE_JOBS: "1"
       BUNDLE_RETRY: "1"
       RAILS_ENV: test
+      POSTGRES_USER: astuto
+      POSTGRES_PASSWORD: dbpass
