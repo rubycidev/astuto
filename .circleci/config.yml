@@ -15,23 +15,23 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: cimg/postgres:14.10
-      services:
-        - docker:
-            name: postgres:14.10
-            command: ["postgres"]
-      steps:
-        - checkout
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "Gemfile.lock" }}
-        - run: bundle install
-        - save_cache:
-            paths:
-              - vendor/bundle
-            key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        - run: bundle exec rake db:create db:migrate
-        - run: bundle exec rails s -b 0.0.0.0
-        - run: bundle exec rspec
+    services:
+      - docker:
+          name: postgres:14.10
+          command: ["postgres"]
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle install
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rake db:create db:migrate
+      - run: bundle exec rails s -b 0.0.0.0
+      - run: bundle exec rspec
     environment:
       # BUNDLE_JOBS: "1"
       # BUNDLE_RETRY: "1"
