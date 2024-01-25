@@ -9,9 +9,7 @@ jobs:
  build:
     docker:
       - image: cimg/ruby:3.0-browsers
-    services:
-      - docker:
-          name: postgres:14.10
+      - image: cimg/postgres:14.10
     steps:
       - checkout
       - restore_cache:
@@ -29,4 +27,3 @@ jobs:
       BUNDLE_JOBS: "1"
       BUNDLE_RETRY: "1"
       RAILS_ENV: test
-
