@@ -4,7 +4,7 @@ executors:
   default:
     working_directory: ~/astuto
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: cimg/ruby:3.0-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_PATH: vendor/bundle
@@ -13,7 +13,7 @@ executors:
           DB_HOST: 127.0.0.1
           PG_HOST: 127.0.0.1
           PGUSER: astuto
-      - image: circleci/postgres:12.0
+      - image: cimg/postgres:14.10
         environment:
           POSTGRES_DB: astuto_test
           POSTGRES_USER: astuto
@@ -44,10 +44,17 @@ jobs:
           command: bundle install
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run:
           name: Setup DB
           command: bundle exec rails db:create db:schema:load --trace
+      - run:
+          name: RSpec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format progress
+      - store_artifacts:
+          path: coverage
       - save_cache:
           key: astuto-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
