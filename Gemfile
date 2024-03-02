@@ -46,6 +46,7 @@ group :development, :test do
 
   gem 'rspec-rails', '4.0.2'
   gem 'factory_bot_rails', '5.0.2'
+  gem 'ruby_ci'
 end
 
 group :development do
