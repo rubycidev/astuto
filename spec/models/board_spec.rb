@@ -10,7 +10,7 @@ RSpec.describe Board, type: :model do
   it 'has a non-nil and non-empty name' do
     nil_name_board = FactoryBot.build(:board, name: nil)
     empty_name_board = FactoryBot.build(:board, name: '')
-
+    sleep 60
     expect(nil_name_board).to be_invalid
     expect(empty_name_board).to be_invalid
   end
