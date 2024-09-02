@@ -41,12 +41,13 @@ gem 'react-rails', '2.6.2'
 # Pagination
 gem 'kaminari', '1.2.2'
 
+gem 'ruby_ci'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rspec-rails', '4.0.2'
   gem 'factory_bot_rails', '5.0.2'
-  gem 'ruby_ci'
 end
 
 group :development do
