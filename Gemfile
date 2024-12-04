@@ -41,7 +41,7 @@ gem 'react-rails', '2.6.2'
 # Pagination
 gem 'kaminari', '1.2.2'
 
-gem 'ruby_ci'
+gem 'fast_ci'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
